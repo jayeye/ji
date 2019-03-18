@@ -1,0 +1,86 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# MIC94030-jicad-bbbreakouts-rescue
+#
+DEF MIC94030-jicad-bbbreakouts-rescue Q 0 40 Y Y 1 F N
+F0 "Q" -150 150 50 H V C CNN
+F1 "MIC94030-jicad-bbbreakouts-rescue" -250 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ SOT-143*
+$ENDFPLIST
+DRAW
+P 2 1 1 0 -200 0 -90 0 N
+P 2 1 1 0 -70 -70 0 -70 N
+P 2 1 1 10 -70 -50 -70 -90 N
+P 2 1 1 0 -70 0 0 0 N
+P 2 1 1 10 -70 20 -70 -20 N
+P 2 1 1 0 -70 70 0 70 N
+P 2 1 1 10 -70 90 -70 50 N
+P 2 1 1 0 0 -70 0 -100 N
+P 2 1 1 0 0 100 0 70 N
+P 2 1 1 0 100 0 0 0 N
+P 3 1 1 10 -90 75 -90 -75 -90 -75 N
+P 4 1 1 0 -10 -70 -50 -85 -50 -55 -10 -70 F
+X ~ 1 0 200 100 D 50 50 1 1 P
+X ~ 2 -300 0 100 R 50 50 1 1 I
+X ~ 3 0 -200 100 U 50 50 1 1 P
+X ~ 4 200 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# NMOS-jicad-bbbreakouts-rescue
+#
+DEF NMOS-jicad-bbbreakouts-rescue Q 0 40 Y Y 1 F N
+F0 "Q" 75 -145 50 H V C CNN
+F1 "NMOS-jicad-bbbreakouts-rescue" -195 -150 50 H V C CNN
+F2 "" -55 15 50 H I C CNN
+F3 "" -55 15 50 H I C CNN
+DRAW
+P 2 1 1 0 -200 0 -90 0 N
+P 2 1 1 0 -70 -70 0 -70 N
+P 2 1 1 10 -70 -50 -70 -90 N
+P 2 1 1 0 -70 0 0 0 N
+P 2 1 1 10 -70 20 -70 -20 N
+P 2 1 1 0 -70 70 0 70 N
+P 2 1 1 10 -70 90 -70 50 N
+P 2 1 1 0 0 -70 0 -100 N
+P 2 1 1 0 0 0 0 -100 N
+P 2 1 1 0 0 100 0 70 N
+P 3 1 1 10 -90 75 -90 -75 -90 -75 N
+P 3 1 1 0 -15 -55 -55 -70 -15 -85 N
+X ~ 1 -300 0 100 R 50 50 1 1 I
+X ~ 2 0 -200 100 U 50 50 1 1 P
+X ~ 3 0 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# PMOS-jicad-bbbreakouts-rescue
+#
+DEF PMOS-jicad-bbbreakouts-rescue Q 0 40 Y Y 1 F N
+F0 "Q" 100 -100 50 H V C CNN
+F1 "PMOS-jicad-bbbreakouts-rescue" -200 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 0 0 0 -100 N
+P 2 1 1 0 -200 0 -90 0 N
+P 2 1 1 0 -70 -70 0 -70 N
+P 2 1 1 10 -70 -50 -70 -90 N
+P 2 1 1 0 -70 0 0 0 N
+P 2 1 1 10 -70 20 -70 -20 N
+P 2 1 1 0 -70 70 0 70 N
+P 2 1 1 10 -70 90 -70 50 N
+P 2 1 1 0 0 -70 0 -100 N
+P 2 1 1 0 0 100 0 70 N
+P 3 1 1 10 -90 75 -90 -75 -90 -75 N
+P 3 1 1 0 -50 -55 -10 -70 -50 -85 N
+X ~ 1 -300 0 100 R 50 50 1 1 I
+X ~ 2 0 -200 100 U 50 50 1 1 P
+X ~ 3 0 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library
