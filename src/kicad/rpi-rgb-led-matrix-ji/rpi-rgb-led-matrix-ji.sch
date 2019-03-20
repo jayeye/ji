@@ -22,6 +22,8 @@ F 0 "P1" H 4800 5600 50  0000 C CNN
 F 1 "Raspberry_Pi_2_3" H 5450 3450 50  0000 C CNN
 F 2 "Connector_PinSocket_2.54mm:PinSocket_2x20_P2.54mm_Vertical" H 5450 4350 50  0001 C CNN
 F 3 "https://www.raspberrypi.org/documentation/hardware/raspberrypi/schematics/rpi_SCH_3bplus_1p0_reduced.pdf" H 5450 4350 50  0001 C CNN
+F 4 "S7123-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "PPPC202LFBN-RC" H 0   0   50  0001 C CNN "Mfg part number"
 	1    5450 4350
 	1    0    0    -1  
 $EndComp
@@ -633,7 +635,9 @@ P 8550 4150
 F 0 "C1" H 8450 4250 50  0000 L CNN
 F 1 "100nF" H 8300 4050 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8588 4000 50  0001 C CNN
-F 3 "~" H 8550 4150 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012208087.pdf" H 8550 4150 50  0001 C CNN
+F 4 "732-8127-1-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "885012208087" H 0   0   50  0001 C CNN "Mfg part number"
 	1    8550 4150
 	1    0    0    -1  
 $EndComp
@@ -644,7 +648,9 @@ P 8950 4150
 F 0 "C2" H 8850 4250 50  0000 L CNN
 F 1 "100nF" H 8700 4050 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8988 4000 50  0001 C CNN
-F 3 "~" H 8950 4150 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012208087.pdf" H 8950 4150 50  0001 C CNN
+F 4 "732-8127-1-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "885012208087" H 0   0   50  0001 C CNN "Mfg part number"
 	1    8950 4150
 	1    0    0    -1  
 $EndComp
@@ -655,7 +661,9 @@ P 9350 4150
 F 0 "C3" H 9250 4250 50  0000 L CNN
 F 1 "100nF" H 9100 4050 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 9388 4000 50  0001 C CNN
-F 3 "~" H 9350 4150 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012208087.pdf" H 9350 4150 50  0001 C CNN
+F 4 "732-8127-1-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "885012208087" H 0   0   50  0001 C CNN "Mfg part number"
 	1    9350 4150
 	1    0    0    -1  
 $EndComp
@@ -666,7 +674,9 @@ P 9750 4150
 F 0 "C4" H 9650 4250 50  0000 L CNN
 F 1 "100nF" H 9500 4050 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 9788 4000 50  0001 C CNN
-F 3 "~" H 9750 4150 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012208087.pdf" H 9750 4150 50  0001 C CNN
+F 4 "732-8127-1-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "885012208087" H 0   0   50  0001 C CNN "Mfg part number"
 	1    9750 4150
 	1    0    0    -1  
 $EndComp
@@ -1015,7 +1025,9 @@ P 2550 4000
 F 0 "Q2" H 2700 3950 50  0000 L CNN
 F 1 "DMMT5401" H 2650 4050 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-6" H 2550 3900 50  0001 C CNN
-F 3 "" H 2550 3900 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30437.pdf" H 2550 3900 50  0001 C CNN
+F 4 "DMMT5401-FDICT-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "DMMT5401-7-F" H 0   0   50  0001 C CNN "Mfg part number"
 	1    2550 4000
 	-1   0    0    1   
 $EndComp
@@ -1026,7 +1038,9 @@ P 3650 4000
 F 0 "Q2" H 3741 3954 50  0000 L CNN
 F 1 "DMMT5401" H 3741 4045 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-6" H 3650 3900 50  0001 C CNN
-F 3 "" H 3650 3900 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30437.pdf" H 3650 3900 50  0001 C CNN
+F 4 "DMMT5401-FDICT-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "DMMT5401-7-F" H 0   0   50  0001 C CNN "Mfg part number"
 	2    3650 4000
 	1    0    0    1   
 $EndComp
@@ -1090,7 +1104,9 @@ P 3050 3500
 F 0 "Q1" V 3393 3500 50  0000 C CNN
 F 1 "DMG2305UX" V 3302 3500 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 3250 3425 50  0001 L CIN
-F 3 "http://www.farnell.com/datasheets/1835997.pdf" H 3050 3500 50  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/DMG2305UX.pdf" H 3050 3500 50  0001 L CNN
+F 4 "DMG2305UX-13DICT-ND" H 0   0   50  0001 C CNN "DigiKey part number"
+F 5 "DMG2305UX-13" H 0   0   50  0001 C CNN "Mfg part number"
 	1    3050 3500
 	0    -1   -1   0   
 $EndComp
