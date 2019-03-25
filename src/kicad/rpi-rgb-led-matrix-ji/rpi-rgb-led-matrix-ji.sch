@@ -6,8 +6,8 @@ $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title "Led matrix driver"
-Date "2019-03-15"
-Rev "1.2.2"
+Date "2019-03-24"
+Rev "1.2.3"
 Comp "TLA CONSULTING, LLC"
 Comment1 ""
 Comment2 "Based on https://github.com/hzeller/rpi-rgb-led-matrix/"
@@ -200,11 +200,11 @@ F 3 "" H 5750 5950 50  0001 C CNN
 $EndComp
 Text Label 6350 4050 0    50   ~ 0
 R1_1
-Text Label 4550 3850 2    50   ~ 0
+Text Label 4550 3550 2    50   ~ 0
 G1_1
 Text Label 4550 3450 2    50   ~ 0
 B1_1
-Text Label 4550 3550 2    50   ~ 0
+Text Label 4550 3850 2    50   ~ 0
 G2_1
 Text Label 4550 4350 2    50   ~ 0
 STROBE
@@ -474,9 +474,9 @@ F 3 "" H 11850 7550 50  0001 C CNN
 	1    11850 7550
 	1    0    0    -1  
 $EndComp
-Text Label 11350 3850 2    50   ~ 0
-G1_1
 Text Label 11350 3950 2    50   ~ 0
+G1_1
+Text Label 11350 3850 2    50   ~ 0
 G2_1
 Text Label 11350 4050 2    50   ~ 0
 R1_1
@@ -486,9 +486,9 @@ Text Label 11350 4250 2    50   ~ 0
 R2_1
 Text Label 11350 4350 2    50   ~ 0
 B2_1
-Text Label 11350 5850 2    50   ~ 0
-G1_2
 Text Label 11350 5950 2    50   ~ 0
+G1_2
+Text Label 11350 5850 2    50   ~ 0
 G2_2
 Text Label 11350 6050 2    50   ~ 0
 R1_2
@@ -498,9 +498,9 @@ Text Label 11350 6250 2    50   ~ 0
 R2_2
 Text Label 11350 6350 2    50   ~ 0
 B2_2
-Text Label 11350 7850 2    50   ~ 0
-G1_3
 Text Label 11350 7950 2    50   ~ 0
+G1_3
+Text Label 11350 7850 2    50   ~ 0
 G2_3
 Text Label 11350 8050 2    50   ~ 0
 R1_3
@@ -962,9 +962,9 @@ Wire Wire Line
 Connection ~ 9050 9150
 Text Label 6350 5150 0    50   ~ 0
 E
-Text Label 6350 4650 0    50   ~ 0
-G1_2
 Text Label 4550 4850 2    50   ~ 0
+G1_2
+Text Label 6350 4650 0    50   ~ 0
 G2_2
 Text Label 6350 4750 0    50   ~ 0
 R1_2
@@ -974,9 +974,9 @@ Text Label 4550 4550 2    50   ~ 0
 R2_2
 Text Label 4550 4650 2    50   ~ 0
 B2_2
-Text Label 6350 4250 0    50   ~ 0
-G1_3
 Text Label 6350 5050 0    50   ~ 0
+G1_3
+Text Label 6350 4250 0    50   ~ 0
 G2_3
 Text Label 6350 4150 0    50   ~ 0
 R1_3
@@ -1703,33 +1703,6 @@ Text Notes 2000 6650 0    50   ~ 0
 Full hat
 Wire Wire Line
 	1250 3700 1250 4900
-Wire Wire Line
-	3650 2950 1850 2950
-Wire Wire Line
-	1850 2950 1850 3050
-Connection ~ 3650 2950
-$Comp
-L jicad:SP SP1
-U 1 1 5CC3A54B
-P 1850 3050
-F 0 "SP1" V 1918 3128 50  0000 L CNN
-F 1 "SP" H 2027 3004 25  0001 L CNN
-F 2 "jicad:smd1mm4pad1" H 1850 3050 50  0001 C CNN
-F 3 "" H 1850 3050 50  0001 C CNN
-	1    1850 3050
-	0    1    1    0   
-$EndComp
-$Comp
-L jicad:SP SP2
-U 1 1 5CC3A7B5
-P 1850 3400
-F 0 "SP2" V 1919 3322 50  0000 R CNN
-F 1 "SP" H 2027 3354 25  0001 L CNN
-F 2 "jicad:smd1mm4pad1" H 1850 3400 50  0001 C CNN
-F 3 "" H 1850 3400 50  0001 C CNN
-	1    1850 3400
-	0    -1   -1   0   
-$EndComp
 Wire Notes Line
 	1650 5300 4200 5300
 Wire Notes Line
@@ -1738,11 +1711,8 @@ Wire Notes Line
 	4200 2400 1650 2400
 Wire Notes Line
 	1650 2400 1650 5300
-Text Notes 1750 2700 0    50   ~ 0
-Full-size hat only.\nIf you trust your power source, DNI Q1/Q2/R2/R3,\nand short SP1-SP2 instead.
+Text Notes 1750 2800 0    50   ~ 0
+Full-size hat only.\n\nIf you trust your power source, DNI J3/Q1/Q2/R2/R3,\nsolder a wire to pins 2 and 4 of the Pi connector\nand run it down to the +5V pin of J3.
 Wire Wire Line
-	1250 3400 1850 3400
-Connection ~ 1850 3400
-Wire Wire Line
-	1850 3400 2550 3400
+	1250 3400 2550 3400
 $EndSCHEMATC
