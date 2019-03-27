@@ -6,8 +6,8 @@ $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title "Led matrix driver"
-Date "2019-03-24"
-Rev "1.2.3"
+Date "2019-03-27"
+Rev "1.2.4"
 Comp "TLA CONSULTING, LLC"
 Comment1 ""
 Comment2 "Based on https://github.com/hzeller/rpi-rgb-led-matrix/"
@@ -123,7 +123,6 @@ F 3 "~" H 1250 3700 50  0001 C CNN
 	1    1250 3700
 	0    -1   -1   0   
 $EndComp
-NoConn ~ 5650 3050
 Wire Wire Line
 	13850 1550 13950 1550
 Wire Wire Line
@@ -1229,16 +1228,14 @@ $EndComp
 $Comp
 L power:+3V3 #PWR03
 U 1 1 5CFC3CD8
-P 5550 2750
-F 0 "#PWR03" H 5550 2600 50  0001 C CNN
-F 1 "+3V3" H 5565 2923 50  0000 C CNN
-F 2 "" H 5550 2750 50  0001 C CNN
-F 3 "" H 5550 2750 50  0001 C CNN
-	1    5550 2750
+P 5650 2600
+F 0 "#PWR03" H 5650 2450 50  0001 C CNN
+F 1 "+3V3" H 5665 2773 50  0000 C CNN
+F 2 "" H 5650 2600 50  0001 C CNN
+F 3 "" H 5650 2600 50  0001 C CNN
+	1    5650 2600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5550 3050 5550 2950
 Wire Wire Line
 	2350 8450 2350 8550
 Wire Wire Line
@@ -1324,51 +1321,37 @@ $EndComp
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5D3BB982
-P 5550 2950
-F 0 "#FLG02" H 5550 3025 50  0001 C CNN
-F 1 "PWR_FLAG" V 5550 3078 50  0000 L CNN
-F 2 "" H 5550 2950 50  0001 C CNN
-F 3 "~" H 5550 2950 50  0001 C CNN
-	1    5550 2950
+P 5650 2700
+F 0 "#FLG02" H 5650 2775 50  0001 C CNN
+F 1 "PWR_FLAG" V 5650 2828 50  0000 L CNN
+F 2 "" H 5650 2700 50  0001 C CNN
+F 3 "~" H 5650 2700 50  0001 C CNN
+	1    5650 2700
 	0    1    -1   0   
 $EndComp
-Connection ~ 5550 2950
-Wire Wire Line
-	5550 2950 5550 2750
-Text Notes 5650 2850 0    50   Italic 0
-This is a bug! 3V3 should be marked Power Output
+Text Notes 5750 2800 0    50   Italic 0
+Bug in the KiCad library! 3V3 should be marked Power Output
 Wire Wire Line
 	3650 3800 3650 3400
 Wire Wire Line
 	3650 3400 3650 2950
 Connection ~ 3650 3400
-$Comp
-L power:+5V #PWR04
-U 1 1 5D3FF8A0
-P 1250 3050
-F 0 "#PWR04" H 1250 2900 50  0001 C CNN
-F 1 "+5V" H 1265 3223 50  0000 C CNN
-F 2 "" H 1250 3050 50  0001 C CNN
-F 3 "" H 1250 3050 50  0001 C CNN
-	1    1250 3050
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	1250 3050 1250 3150
+	4800 2600 4800 2700
 $Comp
 L power:PWR_FLAG #FLG03
 U 1 1 5D42AE8D
-P 1250 3150
-F 0 "#FLG03" H 1250 3225 50  0001 C CNN
-F 1 "PWR_FLAG" V 1250 3278 50  0000 L CNN
-F 2 "" H 1250 3150 50  0001 C CNN
-F 3 "~" H 1250 3150 50  0001 C CNN
-	1    1250 3150
+P 4800 2700
+F 0 "#FLG03" H 4800 2775 50  0001 C CNN
+F 1 "PWR_FLAG" V 4800 2828 50  0000 L CNN
+F 2 "" H 4800 2700 50  0001 C CNN
+F 3 "~" H 4800 2700 50  0001 C CNN
+	1    4800 2700
 	0    -1   -1   0   
 $EndComp
-Connection ~ 1250 3150
+Connection ~ 4800 2700
 Wire Wire Line
-	1250 3150 1250 3400
+	4800 2700 4800 2950
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5D42AF94
@@ -1440,8 +1423,6 @@ Wire Wire Line
 	14950 1750 14950 2250
 Wire Wire Line
 	1150 3500 1250 3500
-Wire Wire Line
-	1150 3400 1250 3400
 Connection ~ 1250 3700
 Wire Wire Line
 	1250 3500 1250 3700
@@ -1456,8 +1437,6 @@ F 3 "~" H 12450 1200 50  0001 C CNN
 	1    12450 1200
 	1    0    0    -1  
 $EndComp
-Text Label 5250 2950 2    50   ~ 0
-HAT_5V
 Wire Notes Line
 	12150 750  15350 750 
 Wire Notes Line
@@ -1579,9 +1558,8 @@ Comments:\n- Labeling point-to-point nets is not necessary,\n  but it makes layi
 Text Notes 1600 8150 0    50   ~ 0
 ID EEPROM section: may be left unpopulated,\nbut then the board will not qualify as a HAT!
 Wire Wire Line
-	3650 2950 5250 2950
+	3650 2950 4800 2950
 Connection ~ 5250 2950
-Connection ~ 1250 3400
 Connection ~ 2550 3400
 Wire Wire Line
 	12450 8750 12450 8550
@@ -1712,7 +1690,79 @@ Wire Notes Line
 Wire Notes Line
 	1650 2400 1650 5300
 Text Notes 1750 2800 0    50   ~ 0
-Full-size hat only.\n\nIf you trust your power source, DNI J3/Q1/Q2/R2/R3,\nsolder a wire to pins 2 and 4 of the Pi connector\nand run it down to the +5V pin of J3.
+Full-size hat only.\n\nIf you intend to use only one power source, DNI J3/Q1/Q2/R2/R3,\nsolder a wire to pins 2 and 4 of the Pi connector\nand run it down to the +5V pin of J3.
+$Comp
+L Device:C C5
+U 1 1 5CAEBB5A
+P 1600 8800
+F 0 "C5" H 1500 8900 50  0000 L CNN
+F 1 "100nF" H 1350 8700 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 1638 8650 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012208087.pdf" H 1600 8800 50  0001 C CNN
+F 4 "732-8127-1-ND" H -8150 4650 50  0001 C CNN "DigiKey part number"
+F 5 "885012208087" H -8150 4650 50  0001 C CNN "Mfg part number"
+	1    1600 8800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 8550 1600 8650
+Connection ~ 4800 2950
+Wire Wire Line
+	4800 2950 5250 2950
+Wire Wire Line
+	1150 3400 1250 3400
+Wire Wire Line
+	5650 2600 5650 2700
+Connection ~ 5650 2700
+Wire Wire Line
+	5650 2700 5650 3050
+NoConn ~ 5550 3050
+Wire Wire Line
+	1250 3050 1250 3150
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5CBFC03E
+P 1250 3150
+F 0 "#FLG0101" H 1250 3225 50  0001 C CNN
+F 1 "PWR_FLAG" V 1250 3278 50  0000 L CNN
+F 2 "" H 1250 3150 50  0001 C CNN
+F 3 "~" H 1250 3150 50  0001 C CNN
+	1    1250 3150
+	0    -1   -1   0   
+$EndComp
+Connection ~ 1250 3150
+Wire Wire Line
+	1250 3150 1250 3400
+Connection ~ 1250 3400
 Wire Wire Line
 	1250 3400 2550 3400
+$Comp
+L power:+5V #PWR04
+U 1 1 5D3FF8A0
+P 4800 2600
+F 0 "#PWR04" H 4800 2450 50  0001 C CNN
+F 1 "+5V" H 4815 2773 50  0000 C CNN
+F 2 "" H 4800 2600 50  0001 C CNN
+F 3 "" H 4800 2600 50  0001 C CNN
+	1    4800 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VP #PWR0101
+U 1 1 5CC6ABBE
+P 1250 3050
+F 0 "#PWR0101" H 1250 2900 50  0001 C CNN
+F 1 "+5VP" H 1265 3223 50  0000 C CNN
+F 2 "" H 1250 3050 50  0001 C CNN
+F 3 "" H 1250 3050 50  0001 C CNN
+	1    1250 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 8550 2350 8550
+Wire Wire Line
+	1600 9750 1850 9750
+Wire Wire Line
+	1600 8950 1600 9750
+Connection ~ 1850 9750
 $EndSCHEMATC

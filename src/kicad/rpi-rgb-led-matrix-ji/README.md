@@ -11,7 +11,7 @@ This is a reworking of [https://github.com/hzeller/rpi-rgb-led-matrix/tree/maste
   20-pin header makes it a lot easier to properly center it.
 * The _hat_ version can be built without the ID EEPROM (only then it cannot be called a HAT!).
   - Do not install R4/R5/R6/U5 if you do not care about the ID EEPROM functionality.
-  - If you trust your power source to power the circuit, _and_ you
-    never intend to also plug in a micro-USB adaptor, you can also not
-    install the 'virtual diode' circuitry (Q1/Q2/R2/R3), and instead short
-    points SP1/SP2 on the rear of the board.
+* The _hat_ version can be built without the virtual diode (again, it cannot be called a HAT then).
+  - Use **ONLY ONE** power source; either the same PSU powering the LED matrices or the microUSB powering the Pi, **BUT NOT BOTH**.
+  - Do not install J3/Q1/Q2/R2/R3
+  - Short pads 5 and 6 of Q2 with a blob of solder.
