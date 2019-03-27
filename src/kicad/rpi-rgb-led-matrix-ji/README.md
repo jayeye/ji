@@ -15,3 +15,5 @@ This is a reworking of [https://github.com/hzeller/rpi-rgb-led-matrix/tree/maste
   - Use **ONLY ONE** power source; either the same PSU powering the LED matrices or the microUSB powering the Pi, **BUT NOT BOTH**.
   - Do not install J3/Q1/Q2/R2/R3
   - Short pads 5 and 6 of Q2 with a blob of solder.
+
+The pictures are from the first version of the circuit: the virtual diode circuitry was slightly wrong (not an issue when powering from J3) and the EEPROM was missing the bypass capacitor. 
