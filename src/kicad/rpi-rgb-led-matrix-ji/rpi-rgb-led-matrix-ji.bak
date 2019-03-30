@@ -197,13 +197,13 @@ F 3 "" H 5750 5950 50  0001 C CNN
 	1    5750 5950
 	1    0    0    -1  
 $EndComp
-Text Label 6350 4050 0    50   ~ 0
+Text Label 4550 4850 2    50   ~ 0
 R1_1
-Text Label 4550 3550 2    50   ~ 0
+Text Label 6350 4150 0    50   ~ 0
 G1_1
-Text Label 4550 3450 2    50   ~ 0
+Text Label 4550 4750 2    50   ~ 0
 B1_1
-Text Label 4550 3850 2    50   ~ 0
+Text Label 6350 4250 0    50   ~ 0
 G2_1
 Text Label 4550 4350 2    50   ~ 0
 STROBE
@@ -295,9 +295,9 @@ F 3 "~" H 13550 4350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4650 3550 4550 3550
-Text Label 6350 3750 0    50   ~ 0
+Text Label 4550 4650 2    50   ~ 0
 B2_1
-Text Label 6350 3850 0    50   ~ 0
+Text Label 4550 4550 2    50   ~ 0
 R2_1
 NoConn ~ 13850 2350
 NoConn ~ 13350 2350
@@ -961,29 +961,29 @@ Wire Wire Line
 Connection ~ 9050 9150
 Text Label 6350 5150 0    50   ~ 0
 E
-Text Label 4550 4850 2    50   ~ 0
+Text Label 7950 6500 0    50   ~ 0
 G1_2
-Text Label 6350 4650 0    50   ~ 0
+Text Label 4550 3850 2    50   ~ 0
 G2_2
-Text Label 6350 4750 0    50   ~ 0
+Text Label 6350 4050 0    50   ~ 0
 R1_2
-Text Label 4550 4750 2    50   ~ 0
+Text Label 7950 6400 0    50   ~ 0
 B1_2
-Text Label 4550 4550 2    50   ~ 0
+Text Label 7950 6300 0    50   ~ 0
 R2_2
-Text Label 4550 4650 2    50   ~ 0
+Text Label 7950 6200 0    50   ~ 0
 B2_2
-Text Label 6350 5050 0    50   ~ 0
+Text Label 6950 7900 0    50   ~ 0
 G1_3
-Text Label 6350 4250 0    50   ~ 0
+Text Label 6350 5050 0    50   ~ 0
 G2_3
-Text Label 6350 4150 0    50   ~ 0
+Text Label 6950 8000 0    50   ~ 0
 R1_3
-Text Label 6350 4450 0    50   ~ 0
+Text Label 6950 7700 0    50   ~ 0
 B1_3
-Text Label 6350 4550 0    50   ~ 0
+Text Label 6950 7800 0    50   ~ 0
 R2_3
-Text Label 6350 4850 0    50   ~ 0
+Text Label 6950 7600 0    50   ~ 0
 B2_3
 Wire Wire Line
 	5150 5650 5150 5750
@@ -1601,11 +1601,11 @@ Text Label 11350 6550 2    50   ~ 0
 ~OE
 Text Label 11350 8550 2    50   ~ 0
 ~OE
-Text Label 9550 7950 0    50   ~ 0
+Text Label 9550 7850 0    50   ~ 0
 STROBE_2_R
 Text Label 9550 8050 0    50   ~ 0
 STROBE_3_R
-Text Label 9550 7850 0    50   ~ 0
+Text Label 9550 7950 0    50   ~ 0
 STROBE_1_R
 $Comp
 L Mechanical:MountingHole H1
@@ -1715,8 +1715,7 @@ Wire Wire Line
 	5650 2600 5650 2700
 Connection ~ 5650 2700
 Wire Wire Line
-	5650 2700 5650 3050
-NoConn ~ 5550 3050
+	5650 2700 5650 2950
 Wire Wire Line
 	1250 3050 1250 3150
 $Comp
@@ -1765,4 +1764,152 @@ Wire Wire Line
 Wire Wire Line
 	1600 8950 1600 9750
 Connection ~ 1850 9750
+Text Label 6350 3750 0    50   ~ 0
+P_SDA
+Text Label 6350 3850 0    50   ~ 0
+P_SCL
+Text Label 6350 4450 0    50   ~ 0
+P_CE1
+Text Label 6350 4550 0    50   ~ 0
+P_CE0
+Text Label 6350 4650 0    50   ~ 0
+P_MISO
+Text Label 6350 4750 0    50   ~ 0
+P_MOSI
+Text Label 6350 4850 0    50   ~ 0
+P_SCLK
+Text Label 4550 3450 2    50   ~ 0
+P_TXD
+Text Label 4550 3550 2    50   ~ 0
+P_RXD
+Text Label 7300 6200 0    50   ~ 0
+P_SDA
+Text Label 7300 6300 0    50   ~ 0
+P_SCL
+Text Label 6300 7900 0    50   ~ 0
+P_CE1
+Text Label 6300 8000 0    50   ~ 0
+P_CE0
+Text Label 6300 7800 0    50   ~ 0
+P_MISO
+Text Label 6300 7600 0    50   ~ 0
+P_MOSI
+Text Label 6300 7700 0    50   ~ 0
+P_SCLK
+Text Label 7300 6400 0    50   ~ 0
+P_TXD
+Text Label 7300 6500 0    50   ~ 0
+P_RXD
+$Comp
+L power:GND #PWR023
+U 1 1 5D41A0EA
+P 7400 6800
+F 0 "#PWR023" H 7400 6550 50  0001 C CNN
+F 1 "GND" H 7405 6627 50  0000 C CNN
+F 2 "" H 7400 6800 50  0001 C CNN
+F 3 "" H 7400 6800 50  0001 C CNN
+	1    7400 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR022
+U 1 1 5D4391C5
+P 7400 5900
+F 0 "#PWR022" H 7400 5750 50  0001 C CNN
+F 1 "+3V3" H 7415 6073 50  0000 C CNN
+F 2 "" H 7400 5900 50  0001 C CNN
+F 3 "" H 7400 5900 50  0001 C CNN
+	1    7400 5900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7200 6200 7950 6200
+Wire Wire Line
+	7200 6300 7950 6300
+Wire Wire Line
+	7200 6400 7950 6400
+Wire Wire Line
+	7200 6500 7950 6500
+Wire Wire Line
+	6200 7900 6950 7900
+Wire Wire Line
+	6200 8000 6950 8000
+Wire Wire Line
+	6200 7800 6950 7800
+Wire Wire Line
+	6200 7600 6950 7600
+Wire Wire Line
+	6200 7700 6950 7700
+Wire Wire Line
+	7200 6100 7400 6100
+Wire Wire Line
+	7400 6100 7400 5900
+Wire Wire Line
+	7200 6600 7400 6600
+Wire Wire Line
+	7400 6600 7400 6800
+$Comp
+L power:+3V3 #PWR024
+U 1 1 5D5EFD57
+P 6400 7300
+F 0 "#PWR024" H 6400 7150 50  0001 C CNN
+F 1 "+3V3" H 6415 7473 50  0000 C CNN
+F 2 "" H 6400 7300 50  0001 C CNN
+F 3 "" H 6400 7300 50  0001 C CNN
+	1    6400 7300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 7500 6400 7500
+Wire Wire Line
+	6400 7500 6400 7300
+$Comp
+L power:GND #PWR025
+U 1 1 5D62E563
+P 6400 8300
+F 0 "#PWR025" H 6400 8050 50  0001 C CNN
+F 1 "GND" H 6405 8127 50  0000 C CNN
+F 2 "" H 6400 8300 50  0001 C CNN
+F 3 "" H 6400 8300 50  0001 C CNN
+	1    6400 8300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 8100 6400 8100
+Wire Wire Line
+	6400 8100 6400 8200
+$Comp
+L Connector_Generic:Conn_01x06 J7
+U 1 1 5D66E386
+P 7000 6300
+F 0 "J7" H 6920 6717 50  0000 C CNN
+F 1 "Header_2x3" H 6920 6626 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 7000 6300 50  0001 C CNN
+F 3 "~" H 7000 6300 50  0001 C CNN
+	1    7000 6300
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x08 J8
+U 1 1 5D66E650
+P 6000 7800
+F 0 "J8" H 5920 8317 50  0000 C CNN
+F 1 "Header_2x4" H 5920 8226 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 6000 7800 50  0001 C CNN
+F 3 "~" H 6000 7800 50  0001 C CNN
+	1    6000 7800
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 8200 6400 8200
+Connection ~ 6400 8200
+Wire Wire Line
+	6400 8200 6400 8300
+Wire Wire Line
+	5550 3050 5550 2950
+Wire Wire Line
+	5550 2950 5650 2950
+Connection ~ 5650 2950
+Wire Wire Line
+	5650 2950 5650 3050
 $EndSCHEMATC
