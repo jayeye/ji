@@ -25,43 +25,78 @@ module maybe_extrude() {
   }
 }
 
-// Debugging, put a little dot at (x1, y1) offset by o
+// Debugging, put a little dot at p
 module _pp(p) {
-  //  translate([x1 - cos(atan(l1) + 90)*o/2,
-  //             y1 - sin(atan(l1) + 90)*o/2 ])
   echo(p);
   translate(p)
     color("black")circle(r=1);
 }
 
-module framer(n=1) {
-  difference() {
-    translate([-5/2 * $s, -1/2 * $s, -1/2 * $h]) {
-      cube([n * $l + 5 * $s, $s, $h]);
-    }
-    for (i = [0 : n]) {
-      translate([-1/2 * $s + i * $l, -1/2 * $s - .01, 0]) {
-        cube([$s, $s + .02, 1/2 * $h + .01 ]);
+// Debugging, put a little dot at p
+module _ppp(p) {
+  echo(p);
+  translate([p[0], p[1], $h / 2])
+    color("black")sphere(r=1);
+}
+
+module framer(a=90, n=1) {
+  translate([(1 - n) * $l / 2, 0, 0]) {
+    for (i = [0 : n - 1]) {
+      translate([i * $l, 0, 0]) {
+        difference() {
+          cube([$l + 5 * $s, $s, $h], center=true);
+          translate([-$l / 2, 0, $h / 2 + .01]) {
+            rotate(a) {
+              cube([$s * 3, $s, $h + .02 ], center=true);
+            }
+          }
+          translate([$l / 2, 0, $h / 2 + .01]) {
+            rotate(-a) {
+              cube([$s * 3, $s, $h + .02 ], center=true);
+            }
+          }
+        }
       }
     }
   }
 }
 
-module frame(nx, ny) {
-  for (j = [0 : ny]) {
+module frame2() {
+  translate([-$l / 2, 0, 0]) {
+    framer();
+  }
+  translate([$l / 2, 0, 0]) {
+    framer();
+  }
+}
+
+module frame4(nx, ny) {
+  for (j = [-ny /2 : 1 : ny / 2]) {
     translate([0, j * $l, 0]) {
       kolor([.8, .8, .8]) {
-        framer(nx);
+        framer(n=nx);
       }
     }
   }
-  for (i = [0 : nx]) {
+  for (i = [-nx / 2 : 1 : nx / 2]) {
     translate([i * $l, 0, 0]) {
       rotate(90) {
         scale([1, 1, -1]) {
           kolor([.9, .9, .9]) {
-            framer(ny);
+            framer(n=ny);
           }
+        }
+      }
+    }
+  }
+}
+
+module frame6() {
+  for (t = [0 : 60 : 359]) {
+    rotate(t) {
+      translate([0, $l * sqrt(3)/2, 0]) {
+        scale([1, 1, 1 - (t % 2) * 2]) {
+          framer(a=60);
         }
       }
     }
@@ -204,7 +239,6 @@ module quad(which="nothing") {
 
 // Use symmetry where possible
 
-
   p0 = [$s / 2, $s / 2];
   p1 = intersect_lines_offset(LLx, LLy, 45, LLx, LLy, 22.5, $s, -$s);
   p2 = UR - flip(p1);
@@ -265,10 +299,9 @@ module quad(which="nothing") {
   }
 }
 
-
-
 // Print 6 of this:
-*framer(2);
+
+*framer(n=2);
 
 // Print 4 of this:
 *quad("p");
@@ -279,12 +312,12 @@ module quad(which="nothing") {
 *quad("r");
 
 // show
-union() {
+*union() {
   x = 2;
   y = 2;
 
-  frame(x, y);
-  for (i = [1 : 2 : x], j = [1 : 2 : y]) {
+  frame4(2 * x, 2 * y);
+  for (i = [-x + 1 : 2 : x], j = [-y + 1 : 2 : y]) {
     translate([$l * i, $l * j]) {
       for (a = [0 : 90 : 359]) {
         rotate(a) {
@@ -295,9 +328,7 @@ union() {
   }
 }
 
-
-module hex() {
-
+module hex(which="nothing") {
   LLx = 0;
   LLy = 0;
   LL  = [LLx, LLy];
@@ -315,8 +346,8 @@ module hex() {
 
   p0 = intersect_lines_offset(LLx, LLy, 0, LLx, LLy, 60, 0, 0);
   p1 = intersect_lines_offset(LLx, LLy, 0, LLx, LLy, 60, -$s, $s);
-  p2 = [LRx - p1[0], p1[1]];
-  p3 = LR;
+  p2 = intersect_lines_offset(LLx, LLy, 0, LRx, LRy, 120, -$s, -$s);
+  p3 = intersect_lines_offset(LRx, LRy, 120, LRx, LRy, -120, -$s, $s);
   p4 = [p2[0], -p2[1]];
   p5 = [p1[0], -p1[1]];
 
@@ -324,14 +355,6 @@ module hex() {
     maybe_extrude() {
       polygon(points=[p0, p1, p2, p3, p4, p5]);
     }
-  }
-
-  module rota() {
-    translate(LR) rotate(120) children();
-  }
-
-  module rotb() {
-    translate(UU) rotate(240) children();
   }
 
   q0 = p1;
@@ -347,53 +370,109 @@ module hex() {
     }
   }
 
-  f = LRx / 3;
-  r0 = intersect_lines_offset(LLx, LLy, 0, f, LLy, 30, -$s, -$s);
-  r1 = intersect_lines_offset(LLx, LLy, 0, f, LLy, 30, -$s, $s);
-  r2 = intersect_lines_offset(LRx / 3, LLy, 30, LRx, LRy, 150, $s, -$s);
-  r3 = intersect_lines_offset(LRx / 3, LLy, 30, LRx, LRy, 150, -$s, -$s);
+  r0 = q3;
+  r1 = q2;
+  r2 = intersect_lines_offset(LRx, LRy, 0, LRx, LRy, 150, -$s, -$s);
+  r3 = p2;
+  r4 = intersect_lines_offset(LRx, LRy, 120, LRx, LRy, 150, -$s, $s);
+  r5 = [$l - q4[0], q4[1]];
+  module r() {
+    maybe_extrude() {
+      polygon(points=[r0, r1, r2, r3, r4, r5]);
+    }
+  }
 
-  module x1() {
+  f = LRx / 3;
+  x0 = intersect_lines_offset(LLx, LLy, 0, f, LLy, 30, -$s, -$s);
+  x1 = intersect_lines_offset(LLx, LLy, 0, f, LLy, 30, -$s, $s);
+  x2 = intersect_lines_offset(LRx / 3, LLy, 30, LRx, LRy, 150, $s, -$s);
+  x3 = intersect_lines_offset(LRx / 3, LLy, 30, LRx, LRy, 150, -$s, -$s);
+
+  module xd() {
     if ($extrude) {
       difference() {
         linear_extrude($h, center=true) {
-          polygon(points=[r0, r1, r2, r3]);
+          polygon(points=[x0, x1, x2, x3]);
         }
         linear_extrude($h / 2) {
           translate(LR) {
-            scale([-1, 1]) polygon(points=[r0, r1, r2, r3]);
+            scale([-1, 1]) polygon(points=[x0, x1, x2, x3]);
           }
         }
       }
     } else {
-      polygon(points=[r0, r1, r2, r3]);
+      polygon(points=[x0, x1, x2, x3]);
     }
   }
 
-  module x2() {
+  module xs() {
     translate(LR) {
       scale([-1, 1]) {
-        x1();
+        xd();
       }
     }
   }
 
-  module hexit() {
-    kolor("red") p();
-    kolor("pink") rota() p();
-    kolor("orange") rotb() p();
-
-    kolor("blue") q();
-    kolor("cyan") rota() q();
-    kolor("turquoise") rotb() q();
-
-    kolor("green") x1();
-    kolor("lime") rota() x1();
-    kolor("olive") rotb() x1();
-    x2();
-    rota() x2();
-    rotb() x2();
+  module rota() {
+    translate(LR) rotate(120) children();
   }
 
-  hexit();
+  module rotb() {
+    translate(UU) rotate(240) children();
+  }
+
+  if (which == "p") {
+    p();
+  } else if (which == "q") {
+    q();
+  } else if (which == "r") {
+    r();
+  } else if (which == "xd") {
+    xd();
+  } else if (which == "xs") {
+    xs();
+  } else {
+    kolor("red") p();
+
+    kolor("teal") q();
+
+    kolor("cyan") r();
+    kolor("turquoise") rota() r();
+
+    kolor("green") xd();
+    kolor("lime") rota() xd();
+    kolor("olive") rotb() xd();
+    xs();
+    rota() xs();
+    rotb() xs();
+  }
+
+  //_ppp(r5);
+}
+
+
+
+// Print 6 of this:
+*hex(which="p");
+
+// Print 6 of this:
+*hex(which="q");
+
+// print 12 of this;
+*hex(which="r");
+
+// print 18 of this:
+*hex(which="xd");
+
+// print 18 of this:
+*hex(which="xs");
+
+//show
+union() {
+  color("silver") frame6();
+  for (i = [0:60:359]) {
+    rotate(i) {
+      hex();
+    }
+  }
 }
