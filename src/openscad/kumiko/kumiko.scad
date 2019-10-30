@@ -1,9 +1,10 @@
 $l = 100;
-$s = 6;
-$h = 10;
+$s = 5;
+$h = 8;
 $fn=30;
 $extrude = true;
 $colorit = true;
+$vslack = .05;
 
 function measure(x) = sqrt(x*x);
 
@@ -45,14 +46,14 @@ module framer(a=90, n=1) {
       translate([i * $l, 0, 0]) {
         difference() {
           cube([$l + 5 * $s, $s, $h], center=true);
-          translate([-$l / 2, 0, $h / 2 + .01]) {
+          translate([-$l / 2, 0, $h / 2 - $vslack]) {
             rotate(a) {
-              cube([$s * 3, $s, $h + .02 ], center=true);
+              cube([$s * 3, $s, $h + 2 * $vslack ], center=true);
             }
           }
-          translate([$l / 2, 0, $h / 2 + .01]) {
+          translate([$l / 2, 0, $h / 2 - $vslack]) {
             rotate(-a) {
-              cube([$s * 3, $s, $h + .02 ], center=true);
+              cube([$s * 3, $s, $h + 2 * $vslack ], center=true);
             }
           }
         }
@@ -91,9 +92,9 @@ module frame4(nx, ny) {
   }
 }
 
-module frame6() {
-  for (t = [0 : 60 : 359]) {
-    rotate(t) {
+module frame6(n=6) {
+  for (t = [0 : n - 1]) {
+    rotate(t * 60) {
       translate([0, $l * sqrt(3)/2, 0]) {
         scale([1, 1, 1 - (t % 2) * 2]) {
           framer(a=60);
@@ -394,8 +395,8 @@ module hex(which="nothing") {
         linear_extrude($h, center=true) {
           polygon(points=[x0, x1, x2, x3]);
         }
-        linear_extrude($h / 2) {
-          translate(LR) {
+        translate(LR3 - [0, 0, $vslack]) {
+          linear_extrude($h / 2 + 2*$vslack) {
             scale([-1, 1]) polygon(points=[x0, x1, x2, x3]);
           }
         }
@@ -406,9 +407,17 @@ module hex(which="nothing") {
   }
 
   module xs() {
-    translate(LR) {
-      scale([-1, 1]) {
-        xd();
+    if ($extrude) {
+      translate(LR3) {
+        scale([-1, 1, -1]) {
+          xd();
+        }
+      }
+    } else {
+      translate(LR) {
+        scale([-1, 1]) {
+          xd();
+        }
       }
     }
   }
@@ -450,25 +459,103 @@ module hex(which="nothing") {
   //_ppp(r5);
 }
 
-
+// Print 6 of this:
+*framer(a=60);
 
 // Print 6 of this:
 *hex(which="p");
 
 // Print 6 of this:
-*hex(which="q");
+*rotate(-30) hex(which="q");
 
 // print 12 of this;
-*hex(which="r");
+*rotate(30) hex(which="r");
 
 // print 18 of this:
-*hex(which="xd");
+*rotate(-30)hex(which="xd");
 
 // print 18 of this:
-*hex(which="xs");
+*rotate([180, 0, -30])hex(which="xs");
 
-//show
+// all at once
+
+// all at once: frame/p/q
+%translate([0, 0, -10]) cube([210, 210, 1]);
 union() {
+  ysep = $s + 6;
+  // 6 x framers
+  for (i = [1 : 6]) {
+    translate([$l / 2 + 3 * $s, i * ysep, 0])
+      framer(a=60);
+  }
+
+  // 6 x p
+  for (i = [1 : 6]) {
+    translate([2, (i + 6) * ysep, 0])
+        hex("p");
+  }
+
+  // 6 x q
+  for (i = [1 : 6]) {
+    translate([140, i * ysep, 0])
+      rotate(-30)
+      hex("q");
+  }
+
+  for (i = [1 : 6]) {
+    translate([75, (i + 1.5) * ysep, 0])
+        rotate(30)
+          hex("r");
+  }
+  for (i = [7 : 12]) {
+    translate([130, (i - 4.5) * ysep, 0])
+        rotate(30)
+          hex("r");
+  }
+  for (i = [1 : 6]) {
+    translate([-8, (i + 14) * ysep, 0]) {
+      translate([10, -ysep / 2, 0])
+        rotate(-30)
+          hex("xd");
+      translate([-12, ysep, 0])
+        rotate([180, 0, -30])
+          hex("xs");
+    }
+  }
+  for (i = [7 : 12]) {
+    translate([60, (i + 8) * ysep, 0]) {
+      translate([10, -ysep / 2, 0])
+        rotate(-30)
+          hex("xd");
+      translate([-12, ysep, 0])
+        rotate([180, 0, -30])
+          hex("xs");
+    }
+  }
+  for (i = [13 : 18]) {
+    translate([130, (i + 2) * ysep, 0]) {
+      translate([10, -ysep / 2, 0])
+        rotate(-30)
+          hex("xd");
+      translate([-12, ysep, 0])
+        rotate([180, 0, -30])
+          hex("xs");
+    }
+  }
+}
+
+// show one
+*hex();
+
+// show all
+*union() {
+  rotate(-120)
+  frame6(n=3);
+  hex();
+
+}
+
+*union() {
   color("silver") frame6();
   for (i = [0:60:359]) {
     rotate(i) {
