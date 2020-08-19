@@ -1002,7 +1002,7 @@ Microhat for Pi Zero only
 Wire Notes Line
 	15350 3050 7850 3050
 Wire Notes Line
-	6400 3950 6400 10800
+	7850 3050 7850 9900
 Wire Notes Line
 	7850 9900 15350 9900
 Wire Notes Line

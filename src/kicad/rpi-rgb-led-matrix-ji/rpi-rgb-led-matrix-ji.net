@@ -1,14 +1,14 @@
 (export (version D)
   (design
     (source /home/ji/workspace/ji/src/kicad/rpi-rgb-led-matrix-ji/rpi-rgb-led-matrix-ji.sch)
-    (date "Sat 30 Mar 2019 02:20:10 EDT")
+    (date "Mon 08 Apr 2019 23:01:28 EDT")
     (tool "Eeschema 5.0.2-bee76a0~70~ubuntu18.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title "Led matrix driver")
         (company "TLA CONSULTING, LLC")
-        (rev 1.2.4)
-        (date 2019-03-27)
+        (rev 2.0.1)
+        (date 2019-03-29)
         (source rpi-rgb-led-matrix-ji.sch)
         (comment (number 1) (value ""))
         (comment (number 2) (value "Based on https://github.com/hzeller/rpi-rgb-led-matrix/"))
