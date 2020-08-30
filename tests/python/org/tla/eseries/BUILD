@@ -1,0 +1,7 @@
+python_tests(
+  name = "eseries",
+  sources = globs("*.py")
+  dependencies = [
+    "src/python/org/tla/eseries:",
+  ],
+)
