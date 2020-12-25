@@ -1,0 +1,92 @@
+%< jidict.ps
+/jidict
+<<
+    /inches { 72 mul }
+    /mm { 25.4 div 72 mul }
+
+    % ISO paper sizes, mm
+    /A0x 841
+    /A0y 1189
+    /A1x 594
+    /A1y 841
+    /A2x 420
+    /A2y 594
+    /A3x 297
+    /A3y 420
+    /A4x 210
+    /A4y 297
+    /A5x 148
+    /A5y 210
+    /A6x 105
+    /A6y 148
+    /A7x 74
+    /A7y 105
+    /A8x 52
+    /A8y 74
+    /A9x 37
+    /A9y 52
+    /A10x 26
+    /A10y 37
+    /B0x 1000
+    /B0y 1414
+    /B1x 707
+    /B1y 1000
+    /B2x 500
+    /B2y 707
+    /B3x 353
+    /B3y 500
+    /B4x 250
+    /B4y 353
+    /B5x 176
+    /B5y 250
+    /B6x 125
+    /B6y 176
+    /B7x 88
+    /B7y 125
+    /B8x 62
+    /B8y 88
+    /B9x 44
+    /B9y 62
+    /B10x 31
+    /B10y 44
+    /C0x 917
+    /C0y 1297
+    /C1x 648
+    /C1y 917
+    /C2x 458
+    /C2y 648
+    /C3x 324
+    /C3y 458
+    /C4x 229
+    /C4y 324
+    /C5x 162
+    /C5y 229
+    /C6x 114
+    /C6y 162
+    /C7x 81
+    /C7y 114
+    /C8x 57
+    /C8y 81
+    /C9x 40
+    /C9y 57
+    /C10x 28
+    /C10y 40
+
+    /A3 { << /PageSize [ A3x mm A3y mm ] >> setpagedevice }
+    /A4 { << /PageSize [ A4x mm A4y mm ] >> setpagedevice }
+    /Ledger { << /PageSize [ 11 inches 17 inches ] >> setpagedevice }
+    /Legal { << /PageSize [ 8.5 inches 14 inches ] >> setpagedevice }
+    /Letter { << /PageSize [ 8.5 inches 11 inches ] >> setpagedevice }
+    /centerpage { currentpagesize 2 div exch 2 div exch translate }
+    /cshow { dup stringwidth pop -2 div 0 rmoveto show }
+    /currentpagesize { currentpagedevice /PageSize get aload pop }
+    /portrait2landscape {
+                          <<
+                              /PageSize
+                              currentpagedevice /PageSize get
+                              aload 3 1 roll
+                              exch 3 -1 roll astore
+                          >> setpagedevice
+                        }
+>>
+def

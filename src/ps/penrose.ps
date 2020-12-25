@@ -1,0 +1,457 @@
+%!
+
+% Gift-wrapping paper with Penrose tiles.
+% See: https://tartarus.org/~simon/20110412-penrose/penrose.xhtml
+
+% Written by JI <ji@tla.org>
+
+% You can do whatever you want with this code, but please be so kind
+% as to acknowledge me as its source. If you manage to make any money
+% out of it, or if it saves you from being murdered by your spouse
+% because you did not get enough wrapping paper, buy me a beer if we
+% ever meet.
+
+
+% Select P2 or P3 tiles
+% /TILESET /kP2 def
+/TILESET /kP3 def
+
+% Colors for acute/obtuse triangles, straight-up or mirrored
+% This code is meant to be printed, so colors are defined as CMYK.
+
+/ACOLORS
+<<
+    true  { 0.0 1.0 1.0 0.0 setcmykcolor } % solid green
+    false { 0.0 1.0 1.0 0.0 setcmykcolor } % solid green
+>>
+def
+
+/OCOLORS
+<<
+    true  { 1.0 0.0 1.0 0.0 setcmykcolor } % solid red
+    false { 1.0 0.0 1.0 0.0 setcmykcolor } % solid red
+>>
+def
+
+% You can guess what that means.
+/PAGESIZE /Letter def
+
+% Recursion level. Works best for JI's taste and Letter-sized paper.
+/RECURSIONS 9 def
+
+% unscaled linewidth
+/LINEWIDTH .48 def
+
+%% You probably do not want to change the next two.
+
+% Color the tiles?
+/fillp true def
+
+% Draw lines around tiles?
+/strokep true def
+
+%%%%
+
+% From jidict.ps
+/jidict
+<<
+    /inches { 72 mul }
+    /mm { 25.4 div 72 mul }
+    /A3x 297
+    /A3y 420
+    /A4x 210
+    /A4y 297
+    /A3 { << /PageSize [ A3x mm A3y mm ] >> setpagedevice }
+    /A4 { << /PageSize [ A4x mm A4y mm ] >> setpagedevice }
+    /Ledger { << /PageSize [ 11 inches 17 inches ] >> setpagedevice }
+    /Legal { << /PageSize [ 8.5 inches 14 inches ] >> setpagedevice }
+    /Letter { << /PageSize [ 8.5 inches 11 inches ] >> setpagedevice }
+    /centerpage { currentpagesize 2 div exch 2 div exch translate }
+    /currentpagesize { currentpagedevice /PageSize get aload pop }
+    /portrait2landscape {
+                          <<
+                              /PageSize
+                              currentpagedevice /PageSize get
+                              aload 3 1 roll
+                              exch 3 -1 roll astore
+                          >> setpagedevice
+                        }
+>>
+def
+
+jidict begin
+
+/stroke1ptp false def
+/arrowsp false def
+
+/stroke1pt {
+    stroke1ptp {
+        gsave
+        0 setgray
+        0 0 itransform 1 dup itransform
+        exch 4 1 roll sub dup mul
+        3 1 roll sub dup mul add sqrt
+        2 mul
+        setlinewidth
+        stroke
+        grestore
+    } if
+} def
+
+/arrows
+arrowsp
+{
+    {                       % k n x y >>> --
+        gsave
+        0 setgray
+        rmoveto
+        pop
+        currentlinewidth 3 div setlinewidth
+        dup dup abs div .05 mul exch % d n
+        1 exch 1 exch abs
+        {
+            pop                     % δ
+            dup neg dup             % δ -δ -δ
+            rmoveto                 % δ
+            dup dup rlineto
+            dup neg dup neg rlineto
+            dup dup neg exch 1.5 mul exch rmoveto
+        } for
+        stroke
+        pop
+        grestore
+    }
+} {
+    {
+        pop pop pop pop
+    }
+} ifelse
+def
+
+/arrows2
+arrowsp
+{
+    {                       % k n x y >>> --
+        gsave
+        currentpoint
+        newpath
+        moveto
+        2 copy rlineto rlineto
+        currentlinewidth mul
+        exch abs currentlinewidth mul exch [0 0] astore
+        0 setdash
+        stroke
+        grestore
+    }
+} {
+    {
+        pop pop pop pop
+    }
+} ifelse
+def
+
+/sof {
+    gsave
+    fillp { fill } if
+    grestore
+    gsave
+    closepath
+    clip
+    strokep { 0 setgray stroke } if
+    grestore
+} def
+
+
+
+
+% In P2 triangles, the legs of the acute triangle are equal to the base
+% of the obtuse triangle
+% Acute triangle:
+%
+%                     .  *B                           ∠A == ∠B == 72°
+%               .  *     *                            ∠C == 36°
+%         .  *           *                            AC == BC == 1
+%     C*  .              *                            AB == 2 * cos72  (scale factor)
+%            *  .        *
+%                  *  .  *
+%                        *A
+%
+% Obtuse triangle:
+%                        E                            ∠D == ∠E == 36°
+%                     .  *  .                         ∠F == 108°
+%               .  *           *  .                   DF == 1
+%         .  *                       *  .             ED == EF == 1/(2 * cos36)
+%     F************************************D
+%
+
+
+
+/CA 1 def
+/CB 1 def
+/AB 72 cos dup add def
+
+/ED 1 36 cos dup add div def
+/EF ED def
+/DF 1 def
+
+/a2colors ACOLORS def
+/o2colors OCOLORS def
+
+/P2A0 {
+    newpath
+    0 0 moveto
+    90 rotate
+    AB 0 rlineto
+    1 5 AB -2 div 0 arrows
+    -72 rotate
+    CB neg 0 rlineto
+    -2 5 CB 2 div 0 arrows
+    -36 rotate
+    3 5 CB 2 div 0 arrows
+    %closepath
+    stroke1pt
+} def
+
+/P2O0 {
+    newpath
+    -1 0 moveto
+    1 0 rlineto
+    144 rotate
+    ED 0 rlineto
+    % 1 7 ED -2 div 0 arrows
+    % 72 rotate
+    % EF 0 rlineto
+    % 4 7 EF -2 div 0 arrows
+    % 144 rotate
+    % 2 7 DF 2 div 0 arrows
+    % closepath
+    stroke1pt
+} def
+
+/P2A {                          % chirality level >>> --
+    gsave
+    dup 0 eq {                  % chirality level
+        pop                     % chirality
+        a2colors exch get exec   % --
+        P2A0
+        sof
+    } {
+        1 sub                   % chirality level-1
+        exch                    % level-1 chirality
+        2 copy                  %
+        2 copy                  % l-1 c l-1 c l-1 c
+        AB                      % l-1 c l-1 c l-1 c AB
+        dup currentlinewidth
+        exch div setlinewidth
+        dup scale               % l-1 c l-1 c l-1 c
+
+        -108 rotate
+        0 AB neg translate
+        exch                    % l-1 c l-1 c c l-1
+        P2A                     % l-1 c l-1 c
+
+        not exch                % l-1 c ~c l-1
+        -36 rotate
+        1 -1 scale
+        P2A                     % l-1 c
+
+        exch
+        -126 rotate
+        1 -1 scale
+        P2O
+    } ifelse
+    grestore
+} def
+
+/P2O {
+    gsave
+    dup 0 eq {                  % chirality level
+        pop                     % chirality
+        o2colors exch get exec   % --
+        P2O0
+        sof
+    } {
+        1 sub                   % chirality level-1
+        exch                    % level-1 chirality
+        2 copy                  % l-1 c l-1 c
+        ED
+        dup currentlinewidth
+        exch div setlinewidth
+        dup scale               % l-1 c l-1 c
+
+        144 rotate
+        1 0 translate
+        exch
+        P2O
+
+        -126 rotate
+        1 -1 scale
+        exch
+        P2A
+    } ifelse
+    grestore
+} def
+
+% In P3 triangles, the legs of all triangles are equal
+% Acute triangle (same)
+%
+%                     .  *B                           ∠A == ∠B == 72°
+%               .  *     *                            ∠C == 36°
+%         .  *           *                            AC == BC == 1
+%     C*  .              *                            AB == 2 * cos72  (scale factor)
+%            *  .        *
+%                  *  .  *
+%                        *A
+%
+% Obtuse triangle:
+%                        H                            ∠G == ∠J == 36°
+%                     .  *  .                         ∠H == 108°
+%               .  *           *  .                   HG == HJ == 1
+%         .  *                       *  .             GJ = 2 * cos36
+%     J************************************G
+%
+
+/HG 1 def
+/HJ 1 def
+/GJ 36 cos dup add def
+
+/a3colors ACOLORS def
+/o3colors OCOLORS def
+
+/P3A0 {                         % only difference is in "arrows"
+    newpath
+    0 0 moveto
+    90 rotate
+    AB 0 rlineto
+    3 5 AB -2 div 0 arrows
+    -72 rotate
+    CB neg 0 rlineto
+    1 5 CB 2 div 0 arrows
+    -36 rotate
+    2 5 CB 2 div 0 arrows
+    % closepath
+    stroke1pt
+} def
+
+/P3O0 {
+    newpath
+    0 0 moveto
+    144 rotate
+    1 0 rlineto
+    -2 7 1 -2 div 0 arrows
+    72 rotate
+    1 0 rlineto
+    -1 7 1 -2 div 0 arrows
+    144 rotate
+    4 7 GJ 2 div 0 arrows
+    % closepath
+    stroke1pt
+} def
+
+/P3A {                          % chirality level >>> --
+    gsave
+    dup 0 eq {                  % chirality level
+        pop                     % chirality
+        a3colors exch get exec   % --
+        P3A0
+        sof
+    } {
+        1 sub                   % chirality level-1
+        exch                    % level-1 chirality
+        2 copy                  % l-1 c l-1 c
+        AB
+        dup currentlinewidth
+        exch div setlinewidth
+        dup scale               % l-1 c l-1 c
+
+        0 1 translate
+        108 rotate
+        exch P3A
+
+        -18 rotate
+        -1 0 translate
+        -108 rotate
+        GJ neg 0 translate
+        -1 1 scale
+        not exch P3O
+
+    } ifelse
+    grestore
+} def
+
+/P3O {
+    gsave
+    dup 0 eq {                  % chirality level
+        pop                     % chirality
+        o3colors exch get exec   % --
+        P3O0
+        sof
+    } {
+        1 sub                   % chirality level-1
+        exch                    % level-1 chirality
+        2 copy                  %
+        2 copy                  % l-1 c l-1 c l-1 c
+        AB                      % l-1 c l-1 c l-1 c AB
+        dup currentlinewidth
+        exch div setlinewidth
+        dup scale               % l-1 c l-1 c l-1 c
+
+        144 rotate
+        GJ 0 translate
+        exch P3O
+
+        -18 rotate
+        exch P3A
+
+        0 GJ translate
+        54 rotate
+        1 -1 scale
+        not exch P3O
+    } ifelse
+    grestore
+} def
+
+Letter
+
+% Autoscale page
+
+%
+%                                                   .B
+%                                             .  *  |
+%                                       .  *        |
+%                                 .  *M-------------|L
+%                           .  *       |            |
+%                     .  *             |            |
+%               .  *                   |            |
+%         .  *                         |            |
+%     C*  .                            |            |
+%            *  .                      |            |
+%                  *  .                |            |
+%                        *  .          |            |
+%                              *  .    |            |
+%                                    *N-------------|K
+%                                          *  .     |
+%                                                *  .A
+%
+% ML == paper width
+% KL == paper height
+%
+% BL = ML / tan72
+% scale so that 1 :: 2*BL + MK and recenter
+%
+
+currentpagesize                 % x y
+1 index                         % x y x
+72 sin 72 cos div div           % x y x/tan72
+dup neg                         % x y x/tan72 -x/tan72
+4 -1 roll                       % y x/tan72 -x/tan72 x
+exch translate                  % y x/tan72
+dup add add                     % y+2*x/tan72
+AB div                          % (y+2*x/tan72)/AB
+dup
+dup LINEWIDTH exch div setlinewidth
+scale
+
+true RECURSIONS P3A
+
+showpage
