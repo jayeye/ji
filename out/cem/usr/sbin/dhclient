@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ "$1" = "-6" ]; then
+  for i in "${@}"; do
+    if [[ "$i" == "-r" ]]; then
+      exec /sbin/dhclient.exe -6 -v -r -pf /run/dhclient6.ethwan.pid -lf /var/lib/dhcp/dhclient6.ethwan.leases -I -P --prefix-len-hint 56 -N -df /var/lib/dhcp/dhclient.ethwan.leases ethwan
+    fi
+  done
+  exec /sbin/dhclient.exe -6 -v -pf /run/dhclient6.ethwan.pid -lf /var/lib/dhcp/dhclient6.ethwan.leases -I -P --prefix-len-hint 56 -df /var/lib/dhcp/dhclient.ethwan.leases ethwan
+#  exec /sbin/dhclient.exe -6 -v -pf /run/dhclient6.ethwan.pid -lf /var/lib/dhcp/dhclient6.ethwan.leases -I -P --prefix-len-hint 56 -N -df /var/lib/dhcp/dhclient.ethwan.leases ethwan
+else
+  exec /sbin/dhclient.exe $*
+fi

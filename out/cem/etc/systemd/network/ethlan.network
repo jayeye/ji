@@ -1,0 +1,8 @@
+[Match]
+Name=ethlan
+
+[Network]
+Address=192.168.253.254/24
+IPForward=yes
+IPMasquerade=yes
+DHCPServer=no

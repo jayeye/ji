@@ -1,0 +1,6 @@
+[Match]
+MACAddress=cc:cc:cc:cc:cc:cc
+
+[Link]
+Name=ethwan
+MACAddressPolicy=persistent
