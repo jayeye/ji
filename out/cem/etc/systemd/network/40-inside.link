@@ -1,0 +1,7 @@
+[Match]
+MACAddress=aa:aa:aa:aa:aa:aa
+
+[Link]
+Name=ethlan
+MACAddressPolicy=persistent
+NamePolicy=keep

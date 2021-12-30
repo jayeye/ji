@@ -1,0 +1,14 @@
+[Match]
+Name=ethwan
+
+[Network]
+DHCP=ipv4
+IPForward=yes
+IPMasquerade=no
+IPv6AcceptRA=yes
+
+
+[DHCP]
+UseDNS=no
+UseNTP=yes
+
