@@ -31,6 +31,12 @@ cmap = dict(**{chr(i + 65): i for i in range(26)},
             **{chr(i + 97): i + 26 for i in range(26)})
 
 print(' '.join([
+    ''.join([chr(offsets[9] + cmap[letter])
+             if letter in cmap else letter
+             for letter in word])
+    for word in sys.argv[1:]]))
+
+print(' '.join([
     ''.join([chr(random.choice(offsets) + cmap[letter])
              if letter in cmap else letter
              for letter in word])
